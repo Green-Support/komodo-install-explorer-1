@@ -148,12 +148,13 @@ if [ ! -d "$CUR_DIR/explorer-notarized" ]; then
   count=1
   while [ $success -eq 0 ]; do
     echo "[Try $count] Cloning the explorer installer repository"
-    git clone https://github.com/estar-app/explorer-notarized/tree/dev  && success=1 || success=0
+    sudo git clone -b dev https://github.com/estar-app/explorer-notarized.git
+ && success=1 || success=0
     sleep 4
     count=$((count+1))
   done
 else
-  echo "A directory named 'explorer-notarized' already exists; assuming it is cloned from the repo: https://github.com/estar-app/explorer-notarized/tree/dev , trying to update and patch the explorer using it"
+  echo "A directory named 'explorer-notarized' already exists; assuming it is cloned from the repo: sudo git clone -b dev https://github.com/estar-app/explorer-notarized.git , trying to update and patch the explorer using it"
   cd $CUR_DIR/explorer-notarized
   git pull
 fi
